@@ -27,6 +27,14 @@ def register(data):
                 "result" : None
             }), 400 
         
+        user_exist = User.objects(phone = phone)
+
+        if len(user_exist) != 0:
+            return jsonify({
+                "message" : "User already",
+                "result" : None
+            }), 400 
+        
         password = hash_password(password)
         
         new_user = {
